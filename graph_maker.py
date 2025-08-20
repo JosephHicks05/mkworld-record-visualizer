@@ -371,5 +371,47 @@ def get_combined_track() -> Track:
     return Track("All Tracks Combined", combined_records)
 
 
+def print_duration_info(type: Literal["player", "country"]) -> None:
+    duration_mapping: dict[str, int] = get_all_track_mapping(type)
+    duration_mapping_list: list[tuple[str, int]] = sorted(duration_mapping.items(),
+                                                                key=lambda x: -x[1])
+    for index, (entry, duration) in enumerate(duration_mapping_list[:20], 1):
+        print(f"rank {index}: {unquote_plus(entry)} with duration {duration} days")
 
-generate_record_plot(get_combined_track())
+
+def main() -> None:
+    print("Loading track data...")
+    fill_track_data()
+
+    while True:
+        user_input: str = input("What would you like to do?\n"
+                                "See composite record graph (1)\n"
+                                "Graph each track individually (2)\n"
+                                "Print highest total duration player leaderboard (3)\n"
+                                "Print highest total duration country leaderboard (4)\n"
+                                "Quit (5)\n"
+                                "Please enter a number: ")
+        
+        if user_input == "1":
+            generate_record_plot(get_combined_track())
+
+        elif user_input == "2":
+            graph_all_tracks()
+
+        elif user_input == "3":
+            print_duration_info("player")
+
+        elif user_input == "4":
+            print_duration_info("country")
+
+        elif user_input == "5":
+            break
+
+        else:
+            print("unrecognized command.")
+
+
+if __name__ == "__main__":
+    main()
+
+
