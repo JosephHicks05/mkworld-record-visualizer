@@ -390,7 +390,7 @@ def main() -> None:
                                 "Print highest total duration player leaderboard (3)\n"
                                 "Print highest total duration country leaderboard (4)\n"
                                 "Quit (5)\n"
-                                "Please enter a number: ")
+                                "Please enter a number 1-5: ")
         
         if user_input == "1":
             generate_record_plot(get_combined_track())
