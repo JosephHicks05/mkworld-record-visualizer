@@ -10,11 +10,12 @@ from random import choice as rand_choice
 from typing import Literal
 from typing import TextIO
 from collections import Counter
+from pathlib import Path
 
 
 BASE_URL: str = "https://mkwrs.com/mkworld/"
 RECORD_BASE_URL: str = f"{BASE_URL}display.php?track="
-RECORD_MEMO_FILE_PATH: str = "C:\\Users\\justj\\OneDrive\\CS\\personal\\web_stuff\\mkworld_datavis\\record_memo.txt"
+RECORD_MEMO_FILE_PATH: Path = Path(__file__).resolve().parent / "record_memo.txt"
 TODAYS_DATE: date = date.today()
 RELEASE_DATE: date = date(2025, 6, 5)
 
